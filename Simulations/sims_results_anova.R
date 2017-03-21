@@ -133,6 +133,7 @@ interaction.plot(practins[,"X"], practins[,"noise"], practins[,"ES.1"])
 interaction.plot(practins[,"alpha"], practins[,"noise"], practins[,"ES.1"])
 interaction.plot(practins[,"beta"], practins[,"noise"], practins[,"ES.1"])
 interaction.plot(practins[,"beta"], practins[,"noise"], practins[,"ES.2"])
+interaction.plot(practins[,"beta"], practins[,"alpha"], practins[,"ES.2"])
 interaction.plot(practins[,"alpha"], practins[,"noise"], practins[,"ES.0"])
 
 interaction.plot(uncertain[,"alpha"], uncertain[,"noise"], uncertain[,"ES.2"])
