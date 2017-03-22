@@ -49,7 +49,7 @@ These files contain information concerning the design of the fixed effects analy
 
 ## real_abt.R
 
-In this file, NHST and ABT is performed on the left out run under different parameter configutations.
+In this file, NHST and ABT is performed on the left out run under different parameter configurations.
 
 ## real_designCrossVal.R
 
