@@ -33,7 +33,7 @@ library(neuRosim)
 library(AnalyzeFMRI)
 #library(lattice)
 
-#Bronbestanden en paths
+# Sourcing functions to calculate B1, SE(B1) AND T 
 source("functions.GLM.R")
 
 #constant parameters
@@ -95,8 +95,10 @@ actvox <- sum(truth==1)
 total.time <- nscan * TR
 dur <- 20
 onsets <- seq(1, total.time, 40)
-X <- simprepTemporal(total.time,1,onsets=onsets,effectsize = 100,durations=dur,TR=TR,acc=0.1, hrf="double-gamma") #generatie van de designmatrix
-pred <- simTSfmri(design=X, base=100, SNR=1, noise="none", verbose=FALSE) #het generen van een tijdsreeks voor EEN actieve voxel
+# Generating a design matrix
+X <- simprepTemporal(total.time,1,onsets=onsets,effectsize = 100,durations=dur,TR=TR,acc=0.1, hrf="double-gamma") 
+# Generate time series for ONE active voxel
+pred <- simTSfmri(design=X, base=100, SNR=1, noise="none", verbose=FALSE) 
 
 design1 <- es1 * (pred-base) + base
 design2 <- es2 * (pred-base) + base
@@ -112,7 +114,7 @@ rawsignal <- rawsignal1 + rawsignal2
 
 signal <- array(NA,dim=c(imdim,nscan))
 
-for (p in 1:nscan) { #zorgen dat het gesmoothe signaal binnen anatomische regio valt
+for (p in 1:nscan) { # Make sure the smoothed signal remains within the anatomical region
 
     slice <- rawsignal[,,,p]
     slice[notruth] <- 0
@@ -122,12 +124,12 @@ for (p in 1:nscan) { #zorgen dat het gesmoothe signaal binnen anatomische regio 
 }
 
 
-#creating gaussian noise in the brain mask
+# creating gaussian noise in the brain mask
 noisim <- array(rnorm(prod(imdim)*nscan,0,sigmnoise),dim=c(imdim,nscan))
 snoisim <- GaussSmoothArray(noisim, voxdim=voxdim, ksize = width, sigma = diag(sigma,3))
 	
 gaussnoise <- array(NA,dim=c(imdim,nscan))
-for (p in 1:nscan) { #zorgen dat het gesmoothe signaal binnen anatomische regio valt
+for (p in 1:nscan) { # Make sure the smoothed signal remains within the anatomical region
   
 slice <- snoisim[,,,p]
 slice[nobrain] <- 0

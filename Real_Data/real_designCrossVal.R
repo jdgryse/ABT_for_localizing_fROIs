@@ -2,8 +2,8 @@
 #### TITLE:     Create the design.mat, design.con and design.grp files
 #### Contents: 	
 #### 
-#### Source Files: //Meta\ Analyis/R\ Code/Studie_FixRan/FixRanStudy.git/Imagen
-#### First Modified: 14/11/2014
+#### Source Files: //ABT_for_localizing_fROIs
+#### First Modified: 2016
 #### Notes: 
 #################
 
@@ -91,19 +91,10 @@ cat('/NumWaves\t1
 # 		# First process the cope images such that:
 # 			# Voxels with any value get 1.
 # 			# Voxels with NaN get 0.
-# 	cope <- readNIfTI("~/Desktop/Bandettini/Scope.nii',sep=''), verbose=FALSE, warn=-1, reorient=TRUE, call=NULL)[,,,]
  	cope[which(cope!=0)] <- 1
  	cope[which(is.nan(cope)==TRUE)] <- 0
 
-# # Now create a mask file
-# mask <- array(0,dim=dim(cope[,,,1]))							# A mask of same dimension as one cope. All with zeroes.
-# mask[which(apply(cope,c(1,2,3),sum)==dim(cope)[4])] <- 1 		# Only the voxels that sum to the total amount of subjects (dim(cope)[4]), get 1. Apply is used to sum over all subjects (4the dimension)
 
-# # Now write the amount of masks according to the amount of subjects.
-# for(j in 1:NumSub){
-# 	niftiimage <- nifti(img=mask,dim=dim(cope[,,,1]))
-# 	writeNIfTI(niftiimage,paste(wd,'mask_',j,sep=''),gzipped=FALSE)
-# }
 
 
 

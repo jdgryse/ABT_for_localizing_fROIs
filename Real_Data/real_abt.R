@@ -2,7 +2,7 @@
 ##### Alternative Hypothesis Testing with uncorrected and FDR-corrected NHST #####
 ##################################################################################
 
-## BLOCKS AANPASSEN, DF AANPASSEN ##
+## ADAPT BLOCKS, ADAPT DF ##
 
 ## PRELIMINARY
 
